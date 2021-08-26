@@ -216,6 +216,72 @@
 
 
 
+                     <!-- Transferring -->
+                     <div class="row">
+                        <div class="col-md-6">
+
+                            <h3>Transferring Category</h3>
+
+                            {!! Form::open(['route'=>'transfer.category']) !!}
+
+
+                                @if ($message = Session::get('success_transfer'))
+
+                                    <div class="alert alert-success alert-block">
+
+                                        <button type="button" class="close" data-dismiss="alert">×</button>
+
+                                        <strong>{{ $message }}</strong>
+
+                                    </div>
+
+                                @endif
+
+                                @if ($message = Session::get('error_transfer'))
+
+                                    <div class="alert alert-danger alert-block">
+
+                                        <button type="button" class="close" data-dismiss="alert">×</button>
+
+                                        <strong>{{ $message }}</strong>
+
+                                    </div>
+
+                                @endif                                
+
+                                <div class="form-group {{ $errors->has('id_transfer') ? 'has-error' : '' }}">
+
+                                    {!! Form::label('Category:') !!}
+
+                                    {!! Form::select('id_transfer',$allCategories, old('id_transfer'), ['class'=>'form-control', 'placeholder'=>'Select Category']) !!}
+
+                                    <span class="text-danger">{{ $errors->first('id_transfer') }}</span>
+
+                                </div>
+
+                                <div class="form-group {{ $errors->has('parent_id_transfer') ? 'has-error' : '' }}">
+
+                                    {!! Form::label('New Category:') !!}
+
+                                    {!! Form::select('parent_id_transfer',$allCategories, old('parent_id_transfer'), ['class'=>'form-control', 'placeholder'=>'Select Category']) !!}
+
+                                    <span class="text-danger">{{ $errors->first('parent_id_transfer') }}</span>
+
+                                </div>
+
+                                <div class="form-group">
+
+                                    <button class="btn btn-success">Transfer</button>
+
+                                </div>
+
+                            {!! Form::close() !!}
+
+                        </div>
+                    </div>
+
+
+
 
 
 

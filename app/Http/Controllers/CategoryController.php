@@ -89,4 +89,37 @@ class CategoryController extends Controller
     }
 
 
+
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+
+    public function transferCategory(Request $request)
+    {
+        $this->validate($request, [
+                'id_transfer' => 'required',
+        		'parent_id_transfer' => 'required',
+        	]);
+
+        $id = $request->get('id_transfer');
+        $parent_id = $request->get('parent_id_transfer');
+        if($id == $parent_id)
+        {
+            return back()->with('error_transfer', 'The old category and the new category cannot have the same value ');
+        }
+        else
+        {
+            $category = Category::find($id);
+            $category->parent_id = $parent_id;
+            $category->save();
+    
+            return back()->with('success_transfer', 'Transferring Category successfully.');
+        }
+        
+    }
+
+
 }
