@@ -25,9 +25,13 @@
 
                 <div class="panel-body">
 
+                    <!-- Display -->
                     <div class="row">
 
                         <div class="col-md-6">
+                        
+                        <input type="button" class="btn btn-info" value="Expand All" onclick="$('#jstree').jstree('open_all');">
+                        <input type="button" class="btn btn-info" value="Collapse All" onclick="$('#jstree').jstree('close_all');">
 
                             <h3>Category List</h3>
                             <div id="jstree">
@@ -56,7 +60,7 @@
                     </div>
 
 
-
+                    <!-- Add -->
                     <div class="row">
                         <div class="col-md-6">
 
@@ -111,7 +115,7 @@
 
 
 
-
+                    <!-- Delete -->
                     <div class="row">
                         <div class="col-md-6">
 
@@ -156,6 +160,65 @@
 
                     </div>
 
+
+
+                    <!-- Edit -->
+                    <div class="row">
+                        <div class="col-md-6">
+
+                            <h3>Edit Category</h3>
+
+                            {!! Form::open(['route'=>'edit.category']) !!}
+
+
+                                @if ($message = Session::get('success_edit'))
+
+                                    <div class="alert alert-success alert-block">
+
+                                        <button type="button" class="close" data-dismiss="alert">×</button>
+
+                                        <strong>{{ $message }}</strong>
+
+                                    </div>
+
+                                @endif
+
+                                <div class="form-group {{ $errors->has('id_edit') ? 'has-error' : '' }}">
+
+                                    {!! Form::label('Category:') !!}
+
+                                    {!! Form::select('id_edit',$allCategories, old('id_edit'), ['class'=>'form-control', 'placeholder'=>'Select Category']) !!}
+
+                                    <span class="text-danger">{{ $errors->first('id_edit') }}</span>
+
+                                </div>
+
+                                <div class="form-group {{ $errors->has('title_edit') ? 'has-error' : '' }}">
+
+                                    {!! Form::label('Title:') !!}
+
+                                    {!! Form::text('title_edit', old('title_edit'), ['class'=>'form-control', 'placeholder'=>'Enter Title']) !!}
+
+                                    <span class="text-danger">{{ $errors->first('title_edit') }}</span>
+
+                                </div>
+
+                                <div class="form-group">
+
+                                    <button class="btn btn-success">Edit</button>
+
+                                </div>
+
+                            {!! Form::close() !!}
+
+                        </div>
+                    </div>
+
+
+
+
+
+
                 </div>
 
             </div>
@@ -170,6 +233,9 @@
     <!-- 5 include the minified jstree source -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
     <script>
+        function Rozwin(){
+        $("#jstree").jstree("open_all");
+    }
     $(function () {
         // 6 create an instance when the DOM is ready
         $('#jstree').jstree();
@@ -184,6 +250,7 @@
         $.jstree.reference('#jstree').select_node('child_node_1');
         });
     });
+    
     </script>
 </body>
 
