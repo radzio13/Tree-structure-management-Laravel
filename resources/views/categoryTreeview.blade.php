@@ -18,8 +18,8 @@
                     <div class="row">
                         <div class="col-md-6">
                         
-                            <input type="button" class="btn btn-primary" value="Rozwiń wszystko" onclick="$('#jstree').jstree('open_all');">
-                            <input type="button" class="btn btn-primary" value="Zwiń wszystko" onclick="$('#jstree').jstree('close_all');">
+                            <input type="button" class="btn btn-success" value="Rozwiń wszystko" onclick="$('#jstree').jstree('open_all');">
+                            <input type="button" class="btn btn-success" value="Zwiń wszystko" onclick="$('#jstree').jstree('close_all');">
 
                             <h3>Lista kategorii</h3>
                             <div id="jstree">

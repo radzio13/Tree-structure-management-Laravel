@@ -57,7 +57,7 @@
                             @endif
                         @else
                             <li class="nav-item ">
-                                <a id="navbarDropdown" class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link" >
                                     {{ Auth::user()->name }}
                                 </a>
                                 </li>
