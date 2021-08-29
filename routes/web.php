@@ -24,3 +24,7 @@ Route::post('add-category',['as'=>'add.category','uses'=>'App\Http\Controllers\C
 Route::post('delete-category',['as'=>'delete.category','uses'=>'App\Http\Controllers\CategoryController@deleteCategory']);
 Route::post('edit-category',['as'=>'edit.category','uses'=>'App\Http\Controllers\CategoryController@editCategory']);
 Route::post('transfer-category',['as'=>'transfer.category','uses'=>'App\Http\Controllers\CategoryController@transferCategory']);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
