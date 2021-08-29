@@ -18,13 +18,11 @@ class CategoryController extends Controller
 
     public function manageCategory()
     {
-
         $categories = Category::where('parent_id', '=', 0)->get();
         $allCategories = Category::pluck('title','id')->all();
 
         return view('categoryTreeview',compact('categories','allCategories'));
     }
-
 
     /**
      * Show the application dashboard.
@@ -64,8 +62,6 @@ class CategoryController extends Controller
 
         return back()->with('success_delete', 'Category deleted successfully.');
     }
-
-
     
     /**
      * Show the application dashboard.
@@ -89,8 +85,6 @@ class CategoryController extends Controller
     }
 
 
-
-
     /**
      * Show the application dashboard.
      *
@@ -106,6 +100,7 @@ class CategoryController extends Controller
 
         $id = $request->get('id_transfer');
         $parent_id = $request->get('parent_id_transfer');
+        
         if($id == $parent_id)
         {
             return back()->with('error_transfer', 'The old category and the new category cannot have the same value ');
