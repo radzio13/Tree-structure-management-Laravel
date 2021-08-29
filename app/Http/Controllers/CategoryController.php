@@ -41,7 +41,7 @@ class CategoryController extends Controller
        
         Category::create($input);
 
-        return back()->with('success_add', 'New Category added successfully.');
+        return back()->with('success_add', 'Pomyślnie dodano nową kategorię.');
     }
 
 
@@ -60,7 +60,7 @@ class CategoryController extends Controller
         $id = $request->get('id');
         Category::destroy($id);
 
-        return back()->with('success_delete', 'Category deleted successfully.');
+        return back()->with('success_delete', 'Pomyślnie usunięto kategorię.');
     }
     
     /**
@@ -81,7 +81,7 @@ class CategoryController extends Controller
         $category->title = $request->get('title_edit');
         $category->save();
 
-        return back()->with('success_edit', 'Edit Category successfully.');
+        return back()->with('success_edit', 'Pomyślnie edytowano kategorię.');
     }
 
 
@@ -100,10 +100,10 @@ class CategoryController extends Controller
 
         $id = $request->get('id_transfer');
         $parent_id = $request->get('parent_id_transfer');
-        
+
         if($id == $parent_id)
         {
-            return back()->with('error_transfer', 'The old category and the new category cannot have the same value ');
+            return back()->with('error_transfer', 'Dotychczasowa kategoria i nowa kategoria muszą się różnić.');
         }
         else
         {
@@ -111,7 +111,7 @@ class CategoryController extends Controller
             $category->parent_id = $parent_id;
             $category->save();
     
-            return back()->with('success_transfer', 'Transferring Category successfully.');
+            return back()->with('success_transfer', 'Pomyslnie przeniesiono kategorię.');
         }
         
     }
