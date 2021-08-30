@@ -52,10 +52,10 @@
                                         </div>
                                     @endif
 
-                                    <div class="form-group {{ $errors->has('title') ? 'has-error' : '' }}">
+                                    <div class="form-group {{ $errors->has('nazwa') ? 'has-error' : '' }}">
                                         {!! Form::label('Nazwa:') !!}
-                                        {!! Form::text('title', old('title'), ['class'=>'form-control', 'placeholder'=>'Wpisz nazwę']) !!}
-                                        <span class="text-danger">{{ $errors->first('title') }}</span>
+                                        {!! Form::text('nazwa', old('nazwa'), ['class'=>'form-control', 'placeholder'=>'Wpisz nazwę']) !!}
+                                        <span class="text-danger">{{ $errors->first('nazwa') }}</span>
                                     </div>
 
                                     <div class="form-group {{ $errors->has('parent_id') ? 'has-error' : '' }}">
@@ -73,7 +73,29 @@
                             </div>
                         </div>
 
+                        <!-- Sort -->
+                        <!--
+                        <div class="row">
+                            <div class="col-md-6">
 
+                                <h3>Sortuj kategorię / element</h3>
+                                {!! Form::open(['route'=>'sort.category']) !!}
+
+                                    @if ($message = Session::get('success_sort'))
+                                        <div class="alert alert-success alert-block">
+                                            <button type="button" class="close" data-dismiss="alert">×</button>
+                                            <strong>{{ $message }}</strong>
+                                        </div>
+                                    @endif
+                                    <div class="form-group">
+                                        <button class="btn btn-success">Sortuj</button>
+                                    </div>
+
+                                {!! Form::close() !!}
+
+                            </div>
+                        </div>
+                        -->
 
 
                         <!-- Delete -->
@@ -89,10 +111,10 @@
                                         </div>
                                     @endif
 
-                                    <div class="form-group {{ $errors->has('id') ? 'has-error' : '' }}">
+                                    <div class="form-group {{ $errors->has('kategoria') ? 'has-error' : '' }}">
                                         {!! Form::label('Kategoria:') !!}
-                                        {!! Form::select('id',$allCategories, old('id'), ['class'=>'form-control', 'placeholder'=>'Wybierz kategorię']) !!}
-                                        <span class="text-danger">{{ $errors->first('id') }}</span>
+                                        {!! Form::select('kategoria',$allCategories, old('kategoria'), ['class'=>'form-control', 'placeholder'=>'Wybierz kategorię']) !!}
+                                        <span class="text-danger">{{ $errors->first('kategoria') }}</span>
                                     </div>
 
                                     <div class="form-group">
@@ -119,16 +141,16 @@
                                         </div>
                                     @endif
 
-                                    <div class="form-group {{ $errors->has('id_edit') ? 'has-error' : '' }}">
-                                        {!! Form::label('Kategoria:') !!}
-                                        {!! Form::select('id_edit',$allCategories, old('id_edit'), ['class'=>'form-control', 'placeholder'=>'Wybierz kategorię']) !!}
-                                        <span class="text-danger">{{ $errors->first('id_edit') }}</span>
+                                    <div class="form-group {{ $errors->has('kategoria_do_edycji') ? 'has-error' : '' }}">
+                                        {!! Form::label('Kategoria do edycji:') !!}
+                                        {!! Form::select('kategoria_do_edycji',$allCategories, old('kategoria_do_edycji'), ['class'=>'form-control', 'placeholder'=>'Wybierz kategorię']) !!}
+                                        <span class="text-danger">{{ $errors->first('kategoria_do_edycji') }}</span>
                                     </div>
 
-                                    <div class="form-group {{ $errors->has('title_edit') ? 'has-error' : '' }}">
+                                    <div class="form-group {{ $errors->has('nowa_nazwa') ? 'has-error' : '' }}">
                                         {!! Form::label('Nowa nazwa:') !!}
-                                        {!! Form::text('title_edit', old('title_edit'), ['class'=>'form-control', 'placeholder'=>'Wpisz nazwę']) !!}
-                                        <span class="text-danger">{{ $errors->first('title_edit') }}</span>
+                                        {!! Form::text('nowa_nazwa', old('nowa_nazwa'), ['class'=>'form-control', 'placeholder'=>'Wpisz nazwę']) !!}
+                                        <span class="text-danger">{{ $errors->first('nowa_nazwa') }}</span>
                                     </div>
 
                                     <div class="form-group">
@@ -162,16 +184,16 @@
                                         </div>
                                     @endif                                
 
-                                    <div class="form-group {{ $errors->has('id_transfer') ? 'has-error' : '' }}">
-                                        {!! Form::label('Kategoria:') !!}
-                                        {!! Form::select('id_transfer',$allCategories, old('id_transfer'), ['class'=>'form-control', 'placeholder'=>'Wybierz kategorię']) !!}
-                                        <span class="text-danger">{{ $errors->first('id_transfer') }}</span>
+                                    <div class="form-group {{ $errors->has('kategoria_do_przeniesienia') ? 'has-error' : '' }}">
+                                        {!! Form::label('Kategoria do przeniesienia:') !!}
+                                        {!! Form::select('kategoria_do_przeniesienia',$allCategories, old('kategoria_do_przeniesienia'), ['class'=>'form-control', 'placeholder'=>'Wybierz kategorię']) !!}
+                                        <span class="text-danger">{{ $errors->first('kategoria_do_przeniesienia') }}</span>
                                     </div>
 
-                                    <div class="form-group {{ $errors->has('parent_id_transfer') ? 'has-error' : '' }}">
+                                    <div class="form-group {{ $errors->has('nowa_kategoria') ? 'has-error' : '' }}">
                                         {!! Form::label('Nowa kategoria:') !!}
-                                        {!! Form::select('parent_id_transfer',$allCategories, old('parent_id_transfer'), ['class'=>'form-control', 'placeholder'=>'Wybierz kategorię']) !!}
-                                        <span class="text-danger">{{ $errors->first('parent_id_transfer') }}</span>
+                                        {!! Form::select('nowa_kategoria',$allCategories, old('nowa_kategoria'), ['class'=>'form-control', 'placeholder'=>'Wybierz kategorię']) !!}
+                                        <span class="text-danger">{{ $errors->first('nowa_kategoria') }}</span>
                                     </div>
 
                                     <div class="form-group">

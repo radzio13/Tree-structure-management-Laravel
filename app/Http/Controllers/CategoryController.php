@@ -24,6 +24,29 @@ class CategoryController extends Controller
         return view('categoryTreeview',compact('categories','allCategories'));
     }
 
+        /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+
+     /*
+    public function sortCategory()
+    {
+        $categories = Category::where('parent_id', '=', 0)->get()->sortBy(function ($categ) {
+            return $categ->title;
+        });
+        $allCategories = Category::pluck('title','id')->all();
+
+        //return view('categoryTreeview',compact('categories','allCategories'));
+        
+        //$categories = Category::orderBy('title', 'ASC')->get();
+        //$allCategories = Category::pluck('title','id')->all();
+        //return redirect()->back()->with('success_sort', 'Pomyślnie sort  kategorię.')->with(compact('categories','allCategories'));
+        return view('categoryTreeview',compact('categories','allCategories'));
+    }
+    */
+
     /**
      * Show the application dashboard.
      *
@@ -33,10 +56,12 @@ class CategoryController extends Controller
     public function addCategory(Request $request)
     {
         $this->validate($request, [
-        		'title' => 'required',
+        		'nazwa' => 'required|max:255|regex:/(^([a-zA-z ]+)(\d+)?$)/', //Na początku małe i duże litery + spacje dowolną ilość razy oraz max jeden ciąg cyfr
         	]);
 
-        $input = $request->all();
+        //$input = $request->all();
+        $input['title'] = $request->get('nazwa');
+        $input['parent_id'] = $request->get('parent_id');
         $input['parent_id'] = empty($input['parent_id']) ? 0 : $input['parent_id'];
        
         Category::create($input);
@@ -54,10 +79,10 @@ class CategoryController extends Controller
     public function deleteCategory(Request $request)
     {
         $this->validate($request, [
-        		'id' => 'required',
+        		'kategoria' => 'required',
         	]);
 
-        $id = $request->get('id');
+        $id = $request->get('kategoria');
         Category::destroy($id);
 
         return back()->with('success_delete', 'Pomyślnie usunięto kategorię.');
@@ -72,13 +97,13 @@ class CategoryController extends Controller
     public function editCategory(Request $request)
     {
         $this->validate($request, [
-                'id_edit' => 'required',
-        		'title_edit' => 'required',
+                'kategoria_do_edycji' => 'required',
+        		'nowa_nazwa' => 'required|max:255|regex:/(^([a-zA-z ]+)(\d+)?$)/', //Na początku małe i duże litery + spacje dowolną ilość razy oraz max jeden ciąg cyfr
         	]);
 
-        $id = $request->get('id_edit');
+        $id = $request->get('kategoria_do_edycji');
         $category = Category::find($id);
-        $category->title = $request->get('title_edit');
+        $category->title = $request->get('nowa_nazwa');
         $category->save();
 
         return back()->with('success_edit', 'Pomyślnie edytowano kategorię.');
@@ -94,12 +119,12 @@ class CategoryController extends Controller
     public function transferCategory(Request $request)
     {
         $this->validate($request, [
-                'id_transfer' => 'required',
-        		'parent_id_transfer' => 'required',
+                'kategoria_do_przeniesienia' => 'required',
+        		'nowa_kategoria' => 'required',
         	]);
 
-        $id = $request->get('id_transfer');
-        $parent_id = $request->get('parent_id_transfer');
+        $id = $request->get('kategoria_do_przeniesienia');
+        $parent_id = $request->get('nowa_kategoria');
 
         if($id == $parent_id)
         {
