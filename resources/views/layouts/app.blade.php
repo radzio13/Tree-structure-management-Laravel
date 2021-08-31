@@ -10,18 +10,17 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
-
+    
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito" >
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
 </head>
 <body>
     <div id="app">
@@ -86,27 +85,63 @@
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
-    <!-- 5 include the minified jstree source -->
+    <!-- include the minified jstree source -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
     <script>
-        function Rozwin(){
-        $("#jstree").jstree("open_all");
-    }
-    $(function () {
-        // 6 create an instance when the DOM is ready
-        $('#jstree').jstree();
-        // 7 bind to events triggered on the tree
-        $('#jstree').on("changed.jstree", function (e, data) {
-        console.log(data.selected);
+    $(function () 
+    {
+        // create an instance when the DOM is ready
+        $('#jstree').jstree(
+        {
+            "plugins" : ["sort"]
         });
-        // 8 interact with the tree - either way is OK
-        $('button').on('click', function () {
-        $('#jstree').jstree(true).select_node('child_node_1');
-        $('#jstree').jstree('select_node', 'child_node_1');
-        $.jstree.reference('#jstree').select_node('child_node_1');
+        // bind to events triggered on the tree
+        $('#jstree').on("changed.jstree", function (e, data) 
+        {
+            console.log(data.selected);
+        });
+        // interact with the tree - either way is OK
+        $('button').on('click', function () 
+        {
+            $('#jstree').jstree(true).select_node('child_node_1');
+            $('#jstree').jstree('select_node', 'child_node_1');
+            $.jstree.reference('#jstree').select_node('child_node_1');
         });
     });
-    
+    function sortListAlphabetically() 
+    {
+        var selector = '#jstree';
+        var root = $(selector).jstree(true).get_node('1');
+        $(selector).jstree(true).sort(root, true);
+        $(selector).jstree(true).refresh();
+    }
+
+    function sortList() 
+    {
+        var list, i, switching, b, shouldSwitch;
+        list = document.getElementById("jstree");
+        switching = true;
+        while (switching) 
+        {
+            switching = false;
+            b = list.getElementsByTagName("LI");
+            for (i = 0; i < (b.length - 1); i++) 
+            {
+                shouldSwitch = false;
+                if (b[i].innerHTML.toLowerCase() < b[i + 1].innerHTML.toLowerCase()) 
+                {
+                    shouldSwitch = true;
+                    break;
+                }
+            }
+            if (shouldSwitch) 
+            {
+                b[i].parentNode.insertBefore(b[i + 1], b[i]);
+                switching = true;
+            }
+        }
+    }
+      
     </script>
 
 </body>

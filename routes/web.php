@@ -13,18 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-/*
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('category-tree-view',['uses'=>'App\Http\Controllers\CategoryController@manageCategory']);
-*/
 Route::get('/',['uses'=>'App\Http\Controllers\CategoryController@manageCategory']);
 Route::post('add-category',['as'=>'add.category','uses'=>'App\Http\Controllers\CategoryController@addCategory']);
 Route::post('delete-category',['as'=>'delete.category','uses'=>'App\Http\Controllers\CategoryController@deleteCategory']);
 Route::post('edit-category',['as'=>'edit.category','uses'=>'App\Http\Controllers\CategoryController@editCategory']);
 Route::post('transfer-category',['as'=>'transfer.category','uses'=>'App\Http\Controllers\CategoryController@transferCategory']);
-Route::post('sort-category',['as'=>'sort.category','uses'=>'App\Http\Controllers\CategoryController@sortCategory']);
 
 Auth::routes();
 

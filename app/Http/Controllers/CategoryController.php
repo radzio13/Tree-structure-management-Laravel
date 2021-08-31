@@ -24,28 +24,6 @@ class CategoryController extends Controller
         return view('categoryTreeview',compact('categories','allCategories'));
     }
 
-        /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
-     /*
-    public function sortCategory()
-    {
-        $categories = Category::where('parent_id', '=', 0)->get()->sortBy(function ($categ) {
-            return $categ->title;
-        });
-        $allCategories = Category::pluck('title','id')->all();
-
-        //return view('categoryTreeview',compact('categories','allCategories'));
-        
-        //$categories = Category::orderBy('title', 'ASC')->get();
-        //$allCategories = Category::pluck('title','id')->all();
-        //return redirect()->back()->with('success_sort', 'Pomyślnie sort  kategorię.')->with(compact('categories','allCategories'));
-        return view('categoryTreeview',compact('categories','allCategories'));
-    }
-    */
 
     /**
      * Show the application dashboard.
@@ -56,10 +34,9 @@ class CategoryController extends Controller
     public function addCategory(Request $request)
     {
         $this->validate($request, [
-        		'nazwa' => 'required|max:255|regex:/(^([a-zA-z ]+)(\d+)?$)/', //Na początku małe i duże litery + spacje dowolną ilość razy oraz max jeden ciąg cyfr
+        		'nazwa' => 'required|max:255|regex:/(^([a-żA-Ż ]+)(\d+)?$)/', //Na początku małe i duże litery + spacje dowolną ilość razy oraz max jeden ciąg cyfr
         	]);
 
-        //$input = $request->all();
         $input['title'] = $request->get('nazwa');
         $input['parent_id'] = $request->get('parent_id');
         $input['parent_id'] = empty($input['parent_id']) ? 0 : $input['parent_id'];
@@ -98,7 +75,7 @@ class CategoryController extends Controller
     {
         $this->validate($request, [
                 'kategoria_do_edycji' => 'required',
-        		'nowa_nazwa' => 'required|max:255|regex:/(^([a-zA-z ]+)(\d+)?$)/', //Na początku małe i duże litery + spacje dowolną ilość razy oraz max jeden ciąg cyfr
+        		'nowa_nazwa' => 'required|max:255|regex:/(^([a-żA-Ż ]+)(\d+)?$)/', //Na początku małe i duże litery + spacje dowolną ilość razy oraz max jeden ciąg cyfr
         	]);
 
         $id = $request->get('kategoria_do_edycji');

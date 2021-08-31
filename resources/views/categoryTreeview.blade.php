@@ -1,12 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
- <!--
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
--->
 
     <div class="container">     
 
@@ -20,6 +14,8 @@
                         
                             <input type="button" class="btn btn-success" value="Rozwiń wszystko" onclick="$('#jstree').jstree('open_all');">
                             <input type="button" class="btn btn-success" value="Zwiń wszystko" onclick="$('#jstree').jstree('close_all');">
+                            <input type="button" class="btn btn-success" value="Sortuj" onclick="sortList()">
+                            <input type="button" class="btn btn-success" value="Sortuj alfabetycznie" onclick="sortListAlphabetically()">
 
                             <h3>Lista kategorii</h3>
                             <div id="jstree">
@@ -73,30 +69,6 @@
                             </div>
                         </div>
 
-                        <!-- Sort -->
-                        <!--
-                        <div class="row">
-                            <div class="col-md-6">
-
-                                <h3>Sortuj kategorię / element</h3>
-                                {!! Form::open(['route'=>'sort.category']) !!}
-
-                                    @if ($message = Session::get('success_sort'))
-                                        <div class="alert alert-success alert-block">
-                                            <button type="button" class="close" data-dismiss="alert">×</button>
-                                            <strong>{{ $message }}</strong>
-                                        </div>
-                                    @endif
-                                    <div class="form-group">
-                                        <button class="btn btn-success">Sortuj</button>
-                                    </div>
-
-                                {!! Form::close() !!}
-
-                            </div>
-                        </div>
-                        -->
-
 
                         <!-- Delete -->
                         <div class="row">
@@ -125,7 +97,6 @@
 
                             </div>
                         </div>
-
 
 
                         <!-- Edit -->
@@ -161,7 +132,6 @@
 
                             </div>
                         </div>
-
 
 
                         <!-- Transferring -->
@@ -209,12 +179,9 @@
                     @endif
 
                 </div>
-
             </div>
-
         </div>
 
     </div>
-
 
 @endsection
